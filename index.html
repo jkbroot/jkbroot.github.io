@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jkbcoder | Senior Full Stack Developer & Technology Expert</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --secondary-purple: #7c3aed;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --surface-dark: #0f172a;
+            --surface-light: #1e293b;
+            --surface-card: #334155;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --glow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--surface-dark) 0%, var(--surface-light) 100%);
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        body.english {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            direction: ltr;
+        }
+
+        /* Enhanced Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, var(--surface-dark) 0%, var(--surface-light) 100%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(30, 64, 175, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+            animation: moveGradient 25s ease infinite;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.03) 50%, transparent 70%);
+            animation: shimmer 15s ease-in-out infinite;
+        }
+
+        @keyframes moveGradient {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1) rotate(0deg); 
+            }
+            33% { 
+                transform: translate(-20px, -20px) scale(1.05) rotate(1deg); 
+            }
+            66% { 
+                transform: translate(20px, -10px) scale(0.98) rotate(-1deg); 
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Enhanced Scroll Progress */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple), var(--accent-green));
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: var(--glow);
+        }
+
+        /* Enhanced Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 6px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .language-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .lang-btn {
+            padding: 10px 18px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            color: white;
+            box-shadow: var(--shadow-sm);
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Navigation */
+        .nav {
+            position: fixed;
+            top: 50%;
+            left: 24px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-item {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            transform: scale(1.4);
+            box-shadow: var(--glow);
+        }
+
+        .nav-item::after {
+            content: attr(data-section);
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-item:hover::after {
+            opacity: 1;
+            left: 28px;
+        }
+
+        /* Enhanced Header */
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 900px;
+            padding: 0 24px;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple), var(--accent-green));
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            color: white;
+            box-shadow: var(--shadow-xl);
+            animation: profileFloat 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes profileFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                box-shadow: var(--shadow-xl);
+            }
+            50% { 
+                transform: translateY(-15px) rotate(2deg); 
+                box-shadow: var(--shadow-xl), var(--glow);
+            }
+        }
+
+        @keyframes shine {
+            0% { transform: translate(-100%, -100%) rotate(45deg); }
+            100% { transform: translate(100%, 100%) rotate(45deg); }
+        }
+
+        .header h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .cta-btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta-btn.secondary {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .cta-btn.primary:hover {
+            box-shadow: var(--shadow-xl), var(--glow);
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Enhanced Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 80px;
+            color: var(--text-primary);
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple), var(--accent-green));
+            display: block;
+            margin: 30px auto 0;
+            border-radius: 2px;
+            box-shadow: var(--glow);
+        }
+
+        /* Enhanced Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .skill-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple), var(--accent-green));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover::after {
+            opacity: 1;
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .skill-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-lg), var(--glow);
+        }
+
+        .skill-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .skill-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .skill-percentage {
+            font-size: 1rem;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .progress-container {
+            margin-bottom: 25px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progress-label span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple), var(--accent-green));
+            border-radius: 4px;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: var(--glow);
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            color: white;
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Enhanced Technologies Table */
+        .tech-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 60px;
+            margin: 80px 0;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .tech-table th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .tech-table th:first-child {
+            border-radius: var(--border-radius) 0 0 0;
+        }
+
+        .tech-table th:last-child {
+            border-radius: 0 var(--border-radius) 0 0;
+        }
+
+        .tech-table td {
+            padding: 20px 30px;
+            text-align: center;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .tech-table tbody tr {
+            transition: var(--transition);
+        }
+
+        .tech-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.01);
+        }
+
+        .tech-table tbody tr:hover td {
+            color: var(--text-primary);
+        }
+
+        .tech-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tech-table tbody tr:last-child td:first-child {
+            border-radius: 0 0 0 var(--border-radius);
+        }
+
+        .tech-table tbody tr:last-child td:last-child {
+            border-radius: 0 0 var(--border-radius) 0;
+        }
+
+        /* Enhanced Contact Section */
+        .contact-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 80px 60px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+            animation: contactGlow 20s linear infinite;
+        }
+
+        @keyframes contactGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .contact-section .section-title {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-section p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            transition: var(--transition);
+            text-align: center;
+            backdrop-filter: blur(15px);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.2);
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .contact-info {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .contact-info:hover {
+            color: var(--primary-light);
+        }
+
+        /* Enhanced Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .language-toggle {
+                top: 16px;
+                right: 16px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .skill-card {
+                padding: 30px;
+            }
+
+            .skill-header {
+                gap: 20px;
+            }
+
+            .tech-section {
+                padding: 40px 30px;
+                margin: 40px 0;
+            }
+
+            .contact-section {
+                padding: 60px 30px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-table th,
+            .tech-table td {
+                padding: 15px 20px;
+                font-size: 0.95rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skill-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .skill-icon {
+                align-self: center;
+            }
+
+            .tech-table th,
+            .tech-table td {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+            .tech-section {
+                padding: 30px 20px;
+            }
+
+            .contact-section {
+                padding: 50px 20px;
+            }
+        }
+
+        /* Enhanced Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-blue), var(--secondary-purple));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--primary-light), var(--secondary-purple));
+        }
+
+        /* Updated Progress Bar Widths */
+        .progress-fill[data-width="99"] { width: 99%; }
+        .progress-fill[data-width="98"] { width: 98%; }
+        .progress-fill[data-width="97"] { width: 97%; }
+        .progress-fill[data-width="96"] { width: 96%; }
+        .progress-fill[data-width="95"] { width: 95%; }
+        .progress-fill[data-width="94"] { width: 94%; }
+        .progress-fill[data-width="93"] { width: 93%; }
+        .progress-fill[data-width="92"] { width: 92%; }
+        .progress-fill[data-width="91"] { width: 91%; }
+        .progress-fill[data-width="90"] { width: 90%; }
+        .progress-fill[data-width="89"] { width: 89%; }
+        .progress-fill[data-width="88"] { width: 88%; }
+        .progress-fill[data-width="87"] { width: 87%; }
+        .progress-fill[data-width="86"] { width: 86%; }
+        .progress-fill[data-width="85"] { width: 85%; }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="en">English</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-item active" data-section="الرئيسية" data-section-en="Home" data-target="header"></div>
+        <div class="nav-item" data-section="المهارات" data-section-en="Skills" data-target="skills"></div>
+        <div class="nav-item" data-section="التقنيات" data-section-en="Technologies" data-target="technologies"></div>
+        <div class="nav-item" data-section="التواصل" data-section-en="Contact" data-target="contact"></div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content fade-in">
+                <div class="profile-image">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h1 data-ar="jkbcoder" data-en="jkbcoder">jkbcoder</h1>
+                <p class="subtitle" data-ar="خبير تقني شامل | متخصص في هندسة البرمجيات والأنظمة المتقدمة" data-en="Technology Expert | Software Engineering & Advanced Systems Specialist">خبير تقني شامل | متخصص في هندسة البرمجيات والأنظمة المتقدمة</p>
+                
+                <div class="cta-buttons">
+                    <a href="#skills" class="cta-btn primary">
+                        <i class="fas fa-rocket"></i>
+                        <span data-ar="استكشف الخبرات التقنية" data-en="Explore Technical Expertise">استكشف الخبرات التقنية</span>
+                    </a>
+                    <a href="#contact" class="cta-btn secondary">
+                        <i class="fas fa-envelope"></i>
+                        <span data-ar="بدء التعاون" data-en="Start Collaboration">بدء التعاون</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in" data-ar="المهارات والخبرات التقنية" data-en="Technical Skills & Expertise">المهارات والخبرات التقنية</h2>
+            
+            <div class="skills-grid">
+                <!-- Full Stack Development -->
+                <div class="skill-card fade-in" style="animation-delay: 0.1s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="تطوير التطبيقات الشاملة" data-en="Full Stack Development">تطوير التطبيقات الشاملة</h3>
+                            <div class="skill-percentage">98%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="بناء تطبيقات متكاملة شاملة من قواعد البيانات إلى واجهات المستخدم مع أنظمة الأمان والدفع." data-en="Building comprehensive integrated applications from databases to user interfaces with security and payment systems.">
+                        بناء تطبيقات متكاملة شاملة من قواعد البيانات إلى واجهات المستخدم مع أنظمة الأمان والدفع.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>98%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="98"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Mobile Apps</span>
+                        <span class="skill-tag">API Design</span>
+                        <span class="skill-tag">Database Design</span>
+                        <span class="skill-tag">Cloud Integration</span>
+                    </div>
+                </div>
+
+                <!-- Backend Development -->
+                <div class="skill-card fade-in" style="animation-delay: 0.2s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="هندسة الخلفية المتقدمة" data-en="Advanced Backend Engineering">هندسة الخلفية المتقدمة</h3>
+                            <div class="skill-percentage">99%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="تصميم وتطوير أنظمة خلفية قوية مع APIs متقدمة وإدارة قواعد البيانات المعقدة." data-en="Designing and developing robust backend systems with advanced APIs and complex database management.">
+                        تصميم وتطوير أنظمة خلفية قوية مع APIs متقدمة وإدارة قواعد البيانات المعقدة.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>99%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="99"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">Authentication</span>
+                        <span class="skill-tag">Event Driven</span>
+                    </div>
+                </div>
+
+                <!-- Frontend Development -->
+                <div class="skill-card fade-in" style="animation-delay: 0.3s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="تطوير الواجهات التفاعلية" data-en="Interactive Frontend Development">تطوير الواجهات التفاعلية</h3>
+                            <div class="skill-percentage">89%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="إنشاء واجهات مستخدم حديثة وتفاعلية باستخدام أحدث التقنيات والمكتبات." data-en="Creating modern and interactive user interfaces using the latest technologies and libraries.">
+                        إنشاء واجهات مستخدم حديثة وتفاعلية باستخدام أحدث التقنيات والمكتبات.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>89%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="89"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">PWA</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Development -->
+                <div class="skill-card fade-in" style="animation-delay: 0.4s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="تطوير التطبيقات المحمولة" data-en="Mobile Application Development">تطوير التطبيقات المحمولة</h3>
+                            <div class="skill-percentage">94%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="بناء تطبيقات محمولة متطورة لأنظمة iOS وAndroid بميزات متقدمة وأداء عالي." data-en="Building advanced mobile applications for iOS and Android with advanced features and high performance.">
+                        بناء تطبيقات محمولة متطورة لأنظمة iOS وAndroid بميزات متقدمة وأداء عالي.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>94%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="94"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Swift</span>
+                        <span class="skill-tag">Kotlin</span>
+                        <span class="skill-tag">Cross Platform</span>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity -->
+                <div class="skill-card fade-in" style="animation-delay: 0.5s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="الأمن السيبراني واختبار الاختراق" data-en="Cybersecurity & Penetration Testing">الأمن السيبراني واختبار الاختراق</h3>
+                            <div class="skill-percentage">87%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="تقييم أمان الأنظمة وإجراء اختبارات اختراق شاملة لضمان حماية البيانات والتطبيقات." data-en="System security assessment and comprehensive penetration testing to ensure data and application protection.">
+                        تقييم أمان الأنظمة وإجراء اختبارات اختراق شاملة لضمان حماية البيانات والتطبيقات.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>87%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="87"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Security Testing</span>
+                        <span class="skill-tag">Vulnerability Assessment</span>
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Ethical Hacking</span>
+                        <span class="skill-tag">Security Audit</span>
+                    </div>
+                </div>
+
+                <!-- Big Data & Analytics -->
+                <div class="skill-card fade-in" style="animation-delay: 0.6s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="البيانات الضخمة والتحليلات المتقدمة" data-en="Big Data & Advanced Analytics">البيانات الضخمة والتحليلات المتقدمة</h3>
+                            <div class="skill-percentage">91%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="معالجة وتحليل البيانات الضخمة باستخدام أدوات متقدمة لاستخراج رؤى قيمة للأعمال." data-en="Processing and analyzing big data using advanced tools to extract valuable business insights.">
+                        معالجة وتحليل البيانات الضخمة باستخدام أدوات متقدمة لاستخراج رؤى قيمة للأعمال.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>91%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="91"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Spark</span>
+                        <span class="skill-tag">Hadoop</span>
+                        <span class="skill-tag">Elasticsearch</span>
+                        <span class="skill-tag">Data Mining</span>
+                        <span class="skill-tag">Machine Learning</span>
+                    </div>
+                </div>
+
+                <!-- Server Administration -->
+                <div class="skill-card fade-in" style="animation-delay: 0.7s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="إدارة الخوادم والبنية التحتية" data-en="Server Administration & Infrastructure">إدارة الخوادم والبنية التحتية</h3>
+                            <div class="skill-percentage">93%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="إدارة وصيانة الخوادم والبنية التحتية السحابية مع ضمان الأداء الأمثل والأمان." data-en="Managing and maintaining servers and cloud infrastructure while ensuring optimal performance and security.">
+                        إدارة وصيانة الخوادم والبنية التحتية السحابية مع ضمان الأداء الأمثل والأمان.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>93%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="93"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux Administration</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Load Balancing</span>
+                    </div>
+                </div>
+
+                <!-- DevOps & Automation -->
+                <div class="skill-card fade-in" style="animation-delay: 0.8s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="DevOps والأتمتة" data-en="DevOps & Automation">DevOps والأتمتة</h3>
+                            <div class="skill-percentage">88%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="تطبيق ممارسات DevOps وأتمتة عمليات النشر والتطوير لتحسين كفاءة الفريق." data-en="Implementing DevOps practices and automating deployment and development processes to improve team efficiency.">
+                        تطبيق ممارسات DevOps وأتمتة عمليات النشر والتطوير لتحسين كفاءة الفريق.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">GitLab</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Monitoring</span>
+                    </div>
+                </div>
+
+                <!-- Project Architecture -->
+                <div class="skill-card fade-in" style="animation-delay: 0.9s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="هندسة المشاريع والتصميم" data-en="Project Architecture & Design">هندسة المشاريع والتصميم</h3>
+                            <div class="skill-percentage">96%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="تصميم هياكل مشاريع قابلة للتوسع والصيانة مع تطبيق أفضل الممارسات في هندسة البرمجيات." data-en="Designing scalable and maintainable project architectures with best practices in software engineering.">
+                        تصميم هياكل مشاريع قابلة للتوسع والصيانة مع تطبيق أفضل الممارسات في هندسة البرمجيات.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>96%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="96"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">System Design</span>
+                        <span class="skill-tag">Design Patterns</span>
+                        <span class="skill-tag">Clean Architecture</span>
+                        <span class="skill-tag">Code Quality</span>
+                        <span class="skill-tag">Documentation</span>
+                    </div>
+                </div>
+
+                <!-- Project Management -->
+                <div class="skill-card fade-in" style="animation-delay: 1.0s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="إدارة المشاريع التقنية" data-en="Technical Project Management">إدارة المشاريع التقنية</h3>
+                            <div class="skill-percentage">92%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="قيادة الفرق التقنية وإدارة المشاريع المعقدة من التخطيط إلى التسليم مع ضمان الجودة." data-en="Leading technical teams and managing complex projects from planning to delivery while ensuring quality.">
+                        قيادة الفرق التقنية وإدارة المشاريع المعقدة من التخطيط إلى التسليم مع ضمان الجودة.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="92"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile Methodology</span>
+                        <span class="skill-tag">Scrum Master</span>
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Risk Management</span>
+                        <span class="skill-tag">Quality Assurance</span>
+                    </div>
+                </div>
+
+                <!-- AI & Machine Learning -->
+                <div class="skill-card fade-in" style="animation-delay: 1.1s">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 data-ar="الذكاء الاصطناعي والتعلم الآلي" data-en="AI & Machine Learning">الذكاء الاصطناعي والتعلم الآلي</h3>
+                            <div class="skill-percentage">85%</div>
+                        </div>
+                    </div>
+                    <div class="skill-description" data-ar="تطوير نماذج الذكاء الاصطناعي وتطبيقات التعلم الآلي لحل المشاكل المعقدة." data-en="Developing AI models and machine learning applications to solve complex problems.">
+                        تطوير نماذج الذكاء الاصطناعي وتطبيقات التعلم الآلي لحل المشاكل المعقدة.
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span data-ar="مستوى الإتقان" data-en="Proficiency Level">مستوى الإتقان</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">NLP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="section" id="technologies">
+        <div class="container">
+            <div class="tech-section fade-in">
+                <h2 class="section-title" data-ar="التقنيات والأدوات المتخصصة" data-en="Specialized Technologies & Tools">التقنيات والأدوات المتخصصة</h2>
+                
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th data-ar="المجال التقني" data-en="Technical Domain">المجال التقني</th>
+                            <th data-ar="التقنيات والأدوات" data-en="Technologies & Tools">التقنيات والأدوات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong data-ar="لغات البرمجة" data-en="Programming Languages">لغات البرمجة</strong></td>
+                            <td>JavaScript, TypeScript, Python, PHP, Dart, Go, Rust, Java</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="تطوير الواجهة الأمامية" data-en="Frontend Development">تطوير الواجهة الأمامية</strong></td>
+                            <td>React, Vue.js, Angular, Next.js, Nuxt.js, Svelte, HTML5, CSS3</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="تطوير الخلفية" data-en="Backend Development">تطوير الخلفية</strong></td>
+                            <td>Node.js, Laravel, Django, FastAPI, Express.js, NestJS</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="قواعد البيانات" data-en="Databases">قواعد البيانات</strong></td>
+                            <td>MySQL, PostgreSQL, MongoDB, Redis, Elasticsearch, InfluxDB</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="تطبيقات الموبايل" data-en="Mobile Development">تطبيقات الموبايل</strong></td>
+                            <td>Flutter, React Native, Swift, Kotlin, Xamarin</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="الحوسبة السحابية" data-en="Cloud Computing">الحوسبة السحابية</strong></td>
+                            <td>AWS, Google Cloud, Azure, DigitalOcean, Heroku</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="العمليات والنشر" data-en="DevOps & Deployment">العمليات والنشر</strong></td>
+                            <td>Docker, Kubernetes, Jenkins, GitLab CI, Terraform, Ansible</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="الأمان والاختبار" data-en="Security & Testing">الأمان والاختبار</strong></td>
+                            <td>OWASP, Burp Suite, Jest, Cypress, Selenium, Penetration Testing</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="البيانات الضخمة" data-en="Big Data">البيانات الضخمة</strong></td>
+                            <td>Apache Spark, Hadoop, Kafka, ELK Stack, Apache Airflow</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-ar="الذكاء الاصطناعي" data-en="AI & ML">الذكاء الاصطناعي</strong></td>
+                            <td>TensorFlow, PyTorch, Scikit-learn, OpenAI API, Hugging Face</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-section fade-in">
+                <h2 class="section-title" data-ar="التواصل والشراكة" data-en="Contact & Partnership">التواصل والشراكة</h2>
+                <p data-ar="مستعد لتقديم الحلول التقنية المبتكرة والمساهمة في نجاح مشروعك التالي" data-en="Ready to provide innovative technical solutions and contribute to your next project's success">مستعد لتقديم الحلول التقنية المبتكرة والمساهمة في نجاح مشروعك التالي</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card slide-in-left">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-title" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</div>
+                        <a href="mailto:jkbcoder@example.com" class="contact-info">jkbcoder@example.com</a>
+                    </div>
+                    
+                    <div class="contact-card slide-in-right">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-title" data-ar="لينكد إن" data-en="LinkedIn Profile">لينكد إن</div>
+                        <a href="https://linkedin.com/in/jkbcoder" class="contact-info" target="_blank">linkedin.com/in/jkbcoder</a>
+                    </div>
+                    
+                    <div class="contact-card slide-in-left">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-title" data-ar="جيت هاب" data-en="GitHub Profile">جيت هاب</div>
+                        <a href="https://github.com/jkbcoder" class="contact-info" target="_blank">github.com/jkbcoder</a>
+                    </div>
+                    
+                    <div class="contact-card slide-in-right">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-title" data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</div>
+                        <a href="tel:+968-XXXXXXXX" class="contact-info">+968 XXXX XXXX</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Multi-language support
+        const languages = {
+            ar: { direction: 'rtl', lang: 'ar' },
+            en: { direction: 'ltr', lang: 'en' }
+        };
+
+        let currentLang = 'ar';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            document.body.className = lang === 'en' ? 'english' : '';
+            document.body.dir = languages[lang].direction;
+            document.documentElement.lang = languages[lang].lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            document.querySelectorAll('[data-ar][data-en]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) element.textContent = text;
+            });
+            
+            document.querySelectorAll('.nav-item').forEach(item => {
+                const section = item.getAttribute(`data-section${lang === 'en' ? '-en' : ''}`);
+                if (section) item.setAttribute('data-section', section);
+            });
+        }
+
+        // Language toggle event listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchLanguage(btn.dataset.lang));
+        });
+
+        // Enhanced Intersection Observer for animations
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Enhanced progress bars animation
+        function animateProgressBars() {
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressFill = entry.target;
+                        const width = progressFill.dataset.width;
+                        
+                        setTimeout(() => {
+                            progressFill.style.width = width + '%';
+                        }, 300);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                progressObserver.observe(bar);
+            });
+        }
+
+        // Enhanced scroll progress indicator
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
+        }
+
+        // Enhanced navigation functionality
+        function setupNavigation() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.section, .header');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const target = item.dataset.target;
+                    const targetElement = document.getElementById(target);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                        const sectionId = entry.target.id;
+                        navItems.forEach(item => {
+                            item.classList.toggle('active', item.dataset.target === sectionId);
+                        });
+                    }
+                });
+            }, { 
+                threshold: [0.3, 0.7],
+                rootMargin: '-10% 0px -10% 0px'
+            });
+
+            sections.forEach(section => navObserver.observe(section));
+        }
+
+        // Enhanced smooth scroll for CTA buttons
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Performance optimization
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollProgress);
+                ticking = true;
+            }
+        }
+
+        function handleScroll() {
+            requestTick();
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            setupScrollAnimations();
+            animateProgressBars();
+            setupNavigation();
+            setupSmoothScroll();
+            
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            updateScrollProgress();
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add window resize handler for responsive updates
+        window.addEventListener('resize', () => {
+            updateScrollProgress();
+        }, { passive: true });
+    </script>
+</body>
+</html>
