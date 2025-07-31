@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>jkbcoder | Senior Full Stack Developer & Technology Expert</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link
@@ -2761,13 +2761,13 @@
                     this.mouse.y = null;
                 });
 
-                // Touch events for mobile
+                // Touch events for mobile - modified to allow scrolling
                 window.addEventListener('touchmove', (e) => {
-                    e.preventDefault();
+                    // Removed preventDefault to allow scrolling
                     const touch = e.touches[0];
                     this.mouse.x = touch.clientX;
                     this.mouse.y = touch.clientY;
-                }, { passive: false });
+                }, { passive: true });
 
                 window.addEventListener('touchend', () => {
                     this.mouse.x = null;
